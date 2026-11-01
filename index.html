@@ -4,172 +4,319 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NityoBox - আপনার অনলাইন শপ</title>
-<meta name="description" content="NityoBox বাংলাদেশের অনলাইন শপ। পোশাক, ইলেকট্রনিক্স, ঘরের পণ্য ও আরও অনেক কিছু কিনুন।">
+<title>NityoBox - Your Everyday Online Shop</title>
+<meta name="description" content="NityoBox - Fashion, Grocery, Electronics, Home and Lifestyle products at great prices in Bangladesh.">
 <style>
+:root{
+  --green:#087f5b;--dark:#123b32;--orange:#ff8c42;
+  --light:#f5f8f6;--muted:#718078;--white:#fff;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f7f8fa;color:#202a32}
-header{background:#fff;padding:16px 6%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;box-shadow:0 2px 12px #0000000d}
-.logo{font-size:27px;font-weight:800;color:#087d50}
-.logo span{color:#f39b24}
-nav a{margin:0 10px;color:#333;text-decoration:none;font-size:14px}
-.cart-btn,.buy{background:#087d50;color:white;border:0;padding:11px 17px;border-radius:7px;cursor:pointer}
-.hero{margin:24px auto;max-width:1200px;padding:55px 7%;border-radius:16px;background:linear-gradient(120deg,#073d30,#11966a);color:white}
-.hero h1{font-size:36px;margin:0 0 12px}
-.hero p{line-height:1.8}
-.hero a{display:inline-block;background:#fff;color:#087d50;padding:12px 22px;border-radius:7px;text-decoration:none;font-weight:bold;margin-top:10px}
-main{max-width:1200px;margin:auto;padding:10px 18px 50px}
-.tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
-input,select{padding:12px;border:1px solid #ddd;border-radius:7px;background:white}
-#search{flex:1;min-width:180px}
-.categories{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 25px}
-.cat{padding:9px 15px;border:1px solid #ddd;background:white;border-radius:20px;cursor:pointer}
-.cat.active{background:#087d50;color:white;border-color:#087d50}
-h2{font-size:23px}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 3px 14px #0000000a}
-.card img{width:100%;height:190px;object-fit:cover;background:#eee}
-.card-content{padding:13px}
-.card h3{font-size:16px;margin:5px 0}
-.price{color:#087d50;font-size:19px;font-weight:bold;margin:12px 0}
-.card button{width:100%}
-footer{text-align:center;padding:30px;background:#142b24;color:white;line-height:1.8}
-.modal{display:none;position:fixed;inset:0;background:#0008;z-index:5;justify-content:center;align-items:center;padding:15px}
-.modal-box{background:white;padding:22px;border-radius:12px;width:100%;max-width:440px;max-height:85vh;overflow:auto}
-.modal-box button{margin:5px 3px}
-.cart-line{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:12px 0}
-.close{float:right;background:#eee;color:#333}
-@media(max-width:850px){.products{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.products{grid-template-columns:repeat(2,1fr);gap:10px}.card img{height:140px}.hero{padding:35px 22px}.hero h1{font-size:27px}nav{display:none}.logo{font-size:23px}}
+body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;color:#25332d;background:#fff}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.topbar{background:var(--dark);color:white;text-align:center;padding:9px;font-size:13px}
+header{background:white;position:sticky;top:0;z-index:20;box-shadow:0 2px 12px #0000000c}
+.header-main{max-width:1200px;margin:auto;padding:16px 20px;display:flex;align-items:center;gap:24px}
+.logo{font-size:29px;font-weight:900;color:var(--green);white-space:nowrap}
+.logo span{color:var(--orange)}
+.search{flex:1;display:flex;background:#f2f5f3;border:1px solid #e4ebe6;border-radius:9px;overflow:hidden}
+.search input{border:0;background:transparent;padding:13px;width:100%;outline:none}
+.search button{border:0;background:var(--green);color:white;padding:0 22px}
+.header-actions{display:flex;gap:16px;align-items:center}
+.action{border:0;background:none;color:var(--dark);font-size:13px}
+.action strong{display:block;font-size:14px}
+.cart-count{background:var(--orange);color:white;border-radius:50%;padding:2px 7px;margin-left:3px}
+nav{border-top:1px solid #edf1ee}
+.nav-inner{max-width:1200px;margin:auto;padding:12px 20px;display:flex;gap:26px;overflow:auto;white-space:nowrap;font-size:14px}
+.nav-inner a:hover{color:var(--green)}
+.container{max-width:1200px;margin:auto;padding:0 20px}
+.hero{margin:24px auto;min-height:320px;border-radius:18px;overflow:hidden;background:linear-gradient(100deg,#103d32,#087f5b);display:flex;align-items:center;color:white;padding:45px}
+.hero-content{max-width:540px}
+.hero small{color:#c5ead8;font-weight:bold;letter-spacing:2px}
+.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:14px 0}
+.hero p{line-height:1.8;color:#e0eee7}
+.primary-btn{background:var(--orange);border:0;color:#fff;padding:13px 23px;border-radius:7px;font-weight:bold}
+.hero-art{margin-left:auto;font-size:110px;opacity:.9}
+.section{margin:38px auto}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.section-head h2{font-size:23px;margin:0;color:var(--dark)}
+.section-head a{color:var(--green);font-size:14px}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.category{border:1px solid #edf1ee;border-radius:12px;padding:20px 10px;text-align:center;background:#fff;transition:.2s;cursor:pointer}
+.category:hover{transform:translateY(-4px);box-shadow:0 7px 20px #0000000c;border-color:#b5d9c7}
+.category .emoji{font-size:34px;display:block;margin-bottom:10px}
+.category strong{font-size:14px}
+.promo{background:#fff2e7;border-radius:14px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.promo h2{margin:0 0 8px;color:#934313}
+.promo p{margin:0;color:#795b46}
+.promo b{font-size:36px;color:#e76d22}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{border:1px solid #dfe8e2;background:white;border-radius:30px;padding:9px 17px;color:#46574d}
+.filters button.active,.filters button:hover{background:var(--green);color:white;border-color:var(--green)}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.product{border:1px solid #edf0ed;border-radius:12px;overflow:hidden;background:white;position:relative;transition:.2s}
+.product:hover{box-shadow:0 8px 24px #00000010;transform:translateY(-3px)}
+.product img{width:100%;height:205px;object-fit:cover;background:#f3f4f2}
+.product-info{padding:13px}
+.product-category{font-size:11px;color:var(--muted)}
+.product h3{font-size:15px;margin:8px 0;min-height:36px}
+.price{font-weight:bold;color:var(--green);font-size:18px}
+.old-price{color:#9aa49e;text-decoration:line-through;font-size:12px;margin-left:6px}
+.add-btn{width:100%;border:0;background:var(--green);color:white;padding:10px;border-radius:6px;margin-top:12px;font-weight:bold}
+.add-btn:hover{background:var(--dark)}
+.tag{position:absolute;top:10px;left:10px;background:#ff824d;color:white;border-radius:5px;padding:5px 8px;font-size:11px}
+.empty{text-align:center;padding:35px;color:var(--muted);grid-column:1/-1}
+footer{background:#123b32;color:#e6f0e9;margin-top:55px;padding:45px 0 20px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:35px}
+footer h3{color:white}
+footer p,footer a{color:#c4d5cb;font-size:14px;line-height:1.9}
+.footer-bottom{text-align:center;border-top:1px solid #ffffff22;margin-top:30px;padding-top:18px;font-size:12px;color:#b7c9be}
+.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:50;justify-content:center;align-items:center;padding:15px}
+.overlay.show{display:flex}
+.modal{background:white;border-radius:14px;width:100%;max-width:480px;max-height:90vh;overflow:auto;padding:22px}
+.modal-head{display:flex;justify-content:space-between;align-items:center}
+.close{border:0;background:#edf2ef;border-radius:50%;width:32px;height:32px}
+.cart-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:12px 0;font-size:14px}
+.qty button{border:1px solid #ddd;background:white;border-radius:4px;padding:3px 8px}
+.total{font-size:20px;font-weight:bold;text-align:right;margin:18px 0}
+.form-field{width:100%;padding:12px;border:1px solid #dce5de;border-radius:7px;margin:7px 0 12px}
+.whatsapp{width:100%;background:#168b50;color:white;border:0;border-radius:7px;padding:14px;font-weight:bold}
+@media(max-width:850px){
+ .categories{grid-template-columns:repeat(3,1fr)}
+ .product-grid{grid-template-columns:repeat(3,1fr)}
+ .hero-art{font-size:75px}
+}
+@media(max-width:600px){
+ .header-main{gap:10px;padding:12px}
+ .logo{font-size:23px}
+ .header-actions{gap:5px}
+ .action{font-size:11px}
+ .action strong{font-size:12px}
+ .search{order:3;flex-basis:100%}
+ .header-main{flex-wrap:wrap}
+ .search input{padding:10px}
+ .search button{padding:0 14px}
+ .nav-inner{gap:18px}
+ .hero{padding:27px 22px;min-height:250px}
+ .hero-art{font-size:48px}
+ .hero h1{font-size:31px}
+ .hero p{font-size:13px}
+ .categories{grid-template-columns:repeat(3,1fr);gap:8px}
+ .category{padding:14px 5px}
+ .category .emoji{font-size:27px}
+ .category strong{font-size:12px}
+ .product-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+ .product img{height:145px}
+ .product-info{padding:10px}
+ .product h3{font-size:13px}
+ .price{font-size:16px}
+ .promo{padding:17px}
+ .promo b{font-size:25px}
+ .footer-grid{grid-template-columns:1fr;gap:10px}
+ .section-head h2{font-size:19px}
+}
 </style>
 </head>
 <body>
+<div class="topbar">NityoBox-এ স্বাগতম | সারা বাংলাদেশে অর্ডার করুন</div>
+
 <header>
-  <div class="logo">Nityo<span>Box</span></div>
-  <nav>
-    <a href="#">হোম</a>
-    <a href="#products">সকল পণ্য</a>
-    <a href="#contact">যোগাযোগ</a>
-  </nav>
-  <button class="cart-btn" onclick="openCart()">🛒 কার্ট (<span id="count">0</span>)</button>
+ <div class="header-main">
+  <a class="logo" href="#">Nityo<span>Box</span></a>
+  <div class="search">
+   <input id="searchInput" placeholder="আপনি কী খুঁজছেন? Search products..." oninput="renderProducts()">
+   <button onclick="renderProducts()">Search</button>
+  </div>
+  <div class="header-actions">
+   <button class="action" onclick="alert('Customer account feature coming soon!')">👤 <strong>Account</strong></button>
+   <button class="action" onclick="openCart()">🛒 <strong>Cart <span class="cart-count" id="cartCount">0</span></strong></button>
+  </div>
+ </div>
+ <nav><div class="nav-inner">
+  <a href="#">Home</a><a href="#categories">Categories</a><a href="#products">Shop</a><a href="#offers">Special Offers</a><a href="#footer">Contact Us</a>
+ </div></nav>
 </header>
 
-<section class="hero">
-  <h1>আপনার পছন্দের সব পণ্য এক জায়গায়!</h1>
-  <p>সাশ্রয়ী দামে পছন্দের পণ্য কিনুন। সহজ অর্ডার, সুবিধাজনক কেনাকাটা।</p>
-  <a href="#products">এখনই কেনাকাটা করুন →</a>
-</section>
-
-<main>
-  <h2>আমাদের পণ্যসমূহ</h2>
-  <div class="tools">
-    <input id="search" placeholder="পণ্যের নাম লিখে খুঁজুন..." oninput="renderProducts()">
-    <select id="sort" onchange="renderProducts()">
-      <option value="default">সাজান: ডিফল্ট</option>
-      <option value="low">কম দাম আগে</option>
-      <option value="high">বেশি দাম আগে</option>
-    </select>
+<main class="container">
+ <section class="hero">
+  <div class="hero-content">
+   <small>EVERYTHING YOU NEED, IN ONE BOX</small>
+   <h1>Shopping সহজ হোক NityoBox-এর সাথে!</h1>
+   <p>Fashion, Grocery, Electronics, Home & Lifestyle — আপনার প্রয়োজনীয় পণ্য এক জায়গায়।</p>
+   <button class="primary-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now →</button>
   </div>
-  <div class="categories" id="categories"></div>
-  <div class="products" id="products"></div>
+  <div class="hero-art">🛍️</div>
+ </section>
+
+ <section class="section" id="categories">
+  <div class="section-head"><h2>Shop by Category</h2><a href="#products">View All →</a></div>
+  <div class="categories">
+   <div class="category" onclick="chooseCategory('Fashion')"><span class="emoji">👗</span><strong>Fashion</strong></div>
+   <div class="category" onclick="chooseCategory('Grocery')"><span class="emoji">🥬</span><strong>Grocery</strong></div>
+   <div class="category" onclick="chooseCategory('Electronics')"><span class="emoji">📱</span><strong>Electronics</strong></div>
+   <div class="category" onclick="chooseCategory('Home')"><span class="emoji">🏠</span><strong>Home & Kitchen</strong></div>
+   <div class="category" onclick="chooseCategory('Beauty')"><span class="emoji">💄</span><strong>Beauty</strong></div>
+   <div class="category" onclick="chooseCategory('Lifestyle')"><span class="emoji">🎒</span><strong>Lifestyle</strong></div>
+  </div>
+ </section>
+
+ <section class="section" id="offers">
+  <div class="promo">
+   <div><h2>Special Shopping Deals!</h2><p>দারুণ সব পণ্য, আকর্ষণীয় দামে।</p></div>
+   <b>SALE</b>
+  </div>
+ </section>
+
+ <section class="section" id="products">
+  <div class="section-head"><h2>Our Products</h2><select id="sortSelect" onchange="renderProducts()" style="padding:9px;border:1px solid #ddd;border-radius:7px"><option value="default">Sort: Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option></select></div>
+  <div class="filters" id="filters">
+   <button class="active" onclick="chooseCategory('All',this)">All Products</button>
+   <button onclick="chooseCategory('Fashion',this)">Fashion</button>
+   <button onclick="chooseCategory('Grocery',this)">Grocery</button>
+   <button onclick="chooseCategory('Electronics',this)">Electronics</button>
+   <button onclick="chooseCategory('Home',this)">Home</button>
+   <button onclick="chooseCategory('Beauty',this)">Beauty</button>
+   <button onclick="chooseCategory('Lifestyle',this)">Lifestyle</button>
+  </div>
+  <div class="product-grid" id="productGrid"></div>
+ </section>
 </main>
 
-<div class="modal" id="cartModal">
-  <div class="modal-box">
-    <button class="close" onclick="closeCart()">বন্ধ করুন ✕</button>
-    <h2>আপনার শপিং কার্ট</h2>
-    <div id="cartItems"></div>
-    <h3 id="total">মোট: ৳০</h3>
-    <input id="customerName" placeholder="আপনার নাম" style="width:100%;margin:6px 0">
-    <input id="customerAddress" placeholder="ডেলিভারি ঠিকানা" style="width:100%;margin:6px 0">
-    <input id="customerPhone" placeholder="মোবাইল নম্বর" style="width:100%;margin:6px 0">
-    <button class="buy" style="width:100%;margin-top:12px" onclick="orderWhatsApp()">WhatsApp-এ অর্ডার করুন</button>
+<footer id="footer">
+ <div class="container">
+  <div class="footer-grid">
+   <div><div class="logo" style="color:white">Nityo<span>Box</span></div><p>Your everyday online shopping destination in Bangladesh. Quality products, great prices and convenient ordering.</p></div>
+   <div><h3>Quick Links</h3><p><a href="#">Home</a><br><a href="#products">Shop</a><br><a href="#categories">Categories</a><br><a href="#offers">Offers</a></p></div>
+   <div><h3>Customer Service</h3><p>Contact Us<br>Delivery Information<br>Return Policy<br>Privacy Policy</p></div>
   </div>
-</div>
-
-<footer id="contact">
-  <h3>NityoBox</h3>
-  <p>আপনার প্রতিদিনের অনলাইন বাজার</p>
-  <p>যোগাযোগ: WhatsApp-এ অর্ডার করুন</p>
-  <small>© 2026 NityoBox. All rights reserved.</small>
+  <div class="footer-bottom">© 2026 NityoBox. All Rights Reserved.</div>
+ </div>
 </footer>
 
+<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()">
+ <div class="modal">
+  <div class="modal-head"><h2>Your Shopping Cart</h2><button class="close" onclick="closeCart()">✕</button></div>
+  <div id="cartItems"></div>
+  <div class="total" id="cartTotal">Total: ৳0</div>
+  <h3>Delivery Information</h3>
+  <input class="form-field" id="customerName" placeholder="আপনার নাম">
+  <input class="form-field" id="customerPhone" placeholder="মোবাইল নম্বর">
+  <textarea class="form-field" id="customerAddress" placeholder="সম্পূর্ণ ডেলিভারি ঠিকানা" rows="3"></textarea>
+  <button class="whatsapp" onclick="sendOrder()">Order via WhatsApp</button>
+  <p style="font-size:12px;color:#888">অর্ডার WhatsApp-এ পাঠানোর আগে আপনার তথ্য যাচাই করুন।</p>
+ </div>
+</div>
+
 <script>
-const WHATSAPP_NUMBER = "8801714156062"; // এখানে নিজের WhatsApp নম্বর দিন
+// আপনার WhatsApp নম্বরটি country code-সহ এখানে বসান।
+// উদাহরণ: 8801712345678 (শুরুর + বা 0 দেবেন না)
+const WHATSAPP_NUMBER = "8801XXXXXXXXX";
 
 const products = [
- {id:1,name:"প্রিমিয়াম থ্রি-পিস",cat:"পোশাক",price:1250,img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500"},
- {id:2,name:"লেডিস হ্যান্ডব্যাগ",cat:"পোশাক",price:850,img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500"},
- {id:3,name:"স্মার্ট ওয়াচ",cat:"ইলেকট্রনিক্স",price:1450,img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"},
- {id:4,name:"ওয়্যারলেস হেডফোন",cat:"ইলেকট্রনিক্স",price:990,img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"},
- {id:5,name:"হোম ডেকোর ল্যাম্প",cat:"ঘর ও রান্নাঘর",price:750,img:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500"},
- {id:6,name:"সানগ্লাস",cat:"ফ্যাশন",price:450,img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500"},
- {id:7,name:"স্কিন কেয়ার সেট",cat:"বিউটি",price:680,img:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500"},
- {id:8,name:"ব্যাকপ্যাক",cat:"ফ্যাশন",price:1100,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500"}
+ {id:1,name:"Premium Cotton Three Piece",category:"Fashion",price:1250,old:1500,tag:"Popular",img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600"},
+ {id:2,name:"Women's Stylish Handbag",category:"Fashion",price:950,old:1200,tag:"Sale",img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"},
+ {id:3,name:"Premium Rice 5 KG",category:"Grocery",price:420,old:460,tag:"Value Pack",img:"https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600"},
+ {id:4,name:"Organic Fresh Vegetables",category:"Grocery",price:180,old:220,tag:"Fresh",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600"},
+ {id:5,name:"Wireless Bluetooth Headphones",category:"Electronics",price:1450,old:1800,tag:"Hot",img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"},
+ {id:6,name:"Smart Watch",category:"Electronics",price:1850,old:2200,tag:"New",img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"},
+ {id:7,name:"Modern Table Lamp",category:"Home",price:850,old:1000,tag:"Sale",img:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600"},
+ {id:8,name:"Kitchen Storage Set",category:"Home",price:650,old:800,tag:"Popular",img:"https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=600"},
+ {id:9,name:"Skincare Beauty Set",category:"Beauty",price:1100,old:1350,tag:"New",img:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600"},
+ {id:10,name:"Classic Sunglasses",category:"Lifestyle",price:550,old:700,tag:"Sale",img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600"},
+ {id:11,name:"Travel Backpack",category:"Lifestyle",price:1250,old:1500,tag:"Popular",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600"},
+ {id:12,name:"Decorative Home Vase",category:"Home",price:490,old:600,tag:"New",img:"https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=600"}
 ];
 
-let cart = [];
-let selected = "সব";
+let selectedCategory="All";
+let cart=[];
 
-const categories = ["সব",...new Set(products.map(p=>p.cat))];
+function money(n){return "৳"+n.toLocaleString("en-BD")}
 
-function showCategories(){
- document.getElementById("categories").innerHTML=categories.map(c=>
- `<button class="cat ${selected===c?'active':''}" onclick="selectCategory('${c}')">${c}</button>`
- ).join("");
-}
-function selectCategory(c){selected=c;showCategories();renderProducts();}
 function renderProducts(){
- let q=document.getElementById("search").value.toLowerCase();
- let list=products.filter(p=>(selected==="সব"||p.cat===selected)&&p.name.toLowerCase().includes(q));
- let sort=document.getElementById("sort").value;
+ const query=document.getElementById("searchInput").value.toLowerCase().trim();
+ let list=products.filter(p=>(selectedCategory==="All"||p.category===selectedCategory)&&
+ (p.name.toLowerCase().includes(query)||p.category.toLowerCase().includes(query)));
+ const sort=document.getElementById("sortSelect").value;
  if(sort==="low")list.sort((a,b)=>a.price-b.price);
  if(sort==="high")list.sort((a,b)=>b.price-a.price);
- document.getElementById("products").innerHTML=list.length?list.map(p=>`
- <div class="card">
- <img src="${p.img}" alt="${p.name}" loading="lazy">
- <div class="card-content">
- <small>${p.cat}</small><h3>${p.name}</h3>
- <div class="price">৳${p.price.toLocaleString("bn-BD")}</div>
- <button class="buy" onclick="addToCart(${p.id})">কার্টে যোগ করুন</button>
- </div></div>`).join(""):"<p>কোনো পণ্য পাওয়া যায়নি।</p>";
+ const grid=document.getElementById("productGrid");
+ if(!list.length){grid.innerHTML='<div class="empty">কোনো পণ্য পাওয়া যায়নি। অন্য কিছু লিখে খুঁজুন।</div>';return}
+ grid.innerHTML=list.map(p=>`
+ <article class="product">
+  <span class="tag">${p.tag}</span>
+  <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=NityoBox'">
+  <div class="product-info">
+   <span class="product-category">${p.category}</span>
+   <h3>${p.name}</h3>
+   <span class="price">${money(p.price)}</span>
+   <span class="old-price">${money(p.old)}</span>
+   <button class="add-btn" onclick="addToCart(${p.id})">＋ Add to Cart</button>
+  </div>
+ </article>`).join("");
 }
+
+function chooseCategory(category,button){
+ selectedCategory=category;
+ document.querySelectorAll("#filters button").forEach(b=>b.classList.remove("active"));
+ if(button)button.classList.add("active");
+ else document.querySelectorAll("#filters button").forEach(b=>{if(b.textContent.trim()===(category==="All"?"All Products":category))b.classList.add("active")});
+ renderProducts();
+ document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
 function addToCart(id){
- let item=cart.find(p=>p.id===id);
- if(item)item.qty++;else cart.push({...products.find(p=>p.id===id),qty:1});
+ const item=cart.find(x=>x.id===id);
+ if(item)item.qty++;
+ else cart.push({id,qty:1});
  updateCart();
- alert("পণ্যটি কার্টে যোগ হয়েছে!");
 }
+
 function updateCart(){
- document.getElementById("count").textContent=cart.reduce((s,p)=>s+p.qty,0);
+ document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0);
+ document.getElementById("cartTotal").textContent="Total: "+money(cart.reduce((s,x)=>s+x.qty*products.find(p=>p.id===x.id).price,0));
+ const box=document.getElementById("cartItems");
+ if(!cart.length){box.innerHTML='<p class="empty">আপনার কার্ট এখন খালি।</p>';return}
+ box.innerHTML=cart.map(x=>{
+ const p=products.find(p=>p.id===x.id);
+ return `<div class="cart-item"><div><strong>${p.name}</strong><br>${money(p.price)} × ${x.qty}</div>
+ <div class="qty"><button onclick="changeQty(${x.id},-1)">−</button> ${x.qty} <button onclick="changeQty(${x.id},1)">＋</button></div></div>`;
+ }).join("");
 }
-function openCart(){
- document.getElementById("cartModal").style.display="flex";
- document.getElementById("cartItems").innerHTML=cart.length?cart.map(p=>`
- <div class="cart-line">
- <span>${p.name} × ${p.qty}<br>৳${p.price*p.qty}</span>
- <button onclick="removeItem(${p.id})">বাদ দিন</button>
- </div>`).join(""):"আপনার কার্ট খালি।";
- let total=cart.reduce((s,p)=>s+p.price*p.qty,0);
- document.getElementById("total").textContent="মোট: ৳"+total.toLocaleString("bn-BD");
+
+function changeQty(id,change){
+ const item=cart.find(x=>x.id===id);
+ if(!item)return;
+ item.qty+=change;
+ if(item.qty<=0)cart=cart.filter(x=>x.id!==id);
+ updateCart();
 }
-function closeCart(){document.getElementById("cartModal").style.display="none";}
-function removeItem(id){cart=cart.filter(p=>p.id!==id);updateCart();openCart();}
-function orderWhatsApp(){
- if(!cart.length){alert("আপনার কার্ট খালি!");return;}
- let name=document.getElementById("customerName").value.trim();
- let address=document.getElementById("customerAddress").value.trim();
- let phone=document.getElementById("customerPhone").value.trim();
- if(!name||!address||!phone){alert("নাম, ঠিকানা ও মোবাইল নম্বর পূরণ করুন।");return;}
- if(WHATSAPP_NUMBER.includes("X")){alert("প্রথমে কোডে নিজের WhatsApp নম্বর বসান।");return;}
- let total=cart.reduce((s,p)=>s+p.price*p.qty,0);
- let msg=`নতুন অর্ডার - NityoBox\nনাম: ${name}\nঠিকানা: ${address}\nফোন: ${phone}\n\nপণ্য:\n`;
- cart.forEach(p=>msg+=`${p.name} × ${p.qty} = ৳${p.price*p.qty}\n`);
- msg+=`\nসর্বমোট: ৳${total}`;
- window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg),"_blank");
+
+function openCart(){document.getElementById("cartOverlay").classList.add("show");updateCart()}
+function closeCart(){document.getElementById("cartOverlay").classList.remove("show")}
+
+function sendOrder(){
+ if(!cart.length){alert("আপনার কার্টে কোনো পণ্য নেই।");return}
+ const name=document.getElementById("customerName").value.trim();
+ const phone=document.getElementById("customerPhone").value.trim();
+ const address=document.getElementById("customerAddress").value.trim();
+ if(!name||!phone||!address){alert("নাম, মোবাইল নম্বর ও ঠিকানা পূরণ করুন।");return}
+ if(WHATSAPP_NUMBER.includes("X")){alert("প্রথমে কোডে আপনার WhatsApp নম্বর যোগ করুন।");return}
+ let total=0;
+ let message="NityoBox - New Order\n\n";
+ message+="Customer: "+name+"\nPhone: "+phone+"\nAddress: "+address+"\n\nProducts:\n";
+ cart.forEach(x=>{
+ const p=products.find(p=>p.id===x.id);
+ total+=p.price*x.qty;
+ message+=p.name+" x "+x.qty+" = "+money(p.price*x.qty)+"\n";
+ });
+ message+="\nTotal: "+money(total);
+ window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
 }
-showCategories();
+
 renderProducts();
+updateCart();
 </script>
 </body>
 </html>
